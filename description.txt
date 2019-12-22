@@ -1,0 +1,44 @@
+The video captured by RPi camera can be viewed on a smartphone placed in the virtual reality (VR) headset. 
+The project lets the user experience virtual reality through VR headset. Dual-screen mode is enabled in the 
+smartphone for this purpose. The smartphone reads the accelerometer and magnetometer data of the direction 
+in which the user turns his head, say, right or left. This data is sent to the modem over Wi-Fi and to the 
+RPi board, which, in turn, provides these values as inputs to the servo motors.Two servo motors are used to 
+move the camera—one for the vertical movement and the other for the horizontal movement. So when you turn 
+your head along with VR headset to the right side, the RPi camera will also turn to the right direction. It 
+receives input from the smartphone via Wi-Fi, and then sends controlling pulse to the servo motors to move 
+the RPi camera. The smartphone also provides input to the Arduino Mega (Board2) for the purpose of navigation 
+or movement of the virtual telepresence robot. The motor driver IC and geared motors are connected at the end 
+of the navigation circuit. The commands to run the virtual telepresence robot can be sent via Bluetooth or RF 
+module from the smartphone. In this example, Bluetooth is used. The project has following sections: 12V charger, 
+8V power supply, Raspberry Pi board, Arduino Mega 2560 board, servo motors, DC geared motors and Bluetooth 
+module. Along with these you also require an Android smartphone with relevant app, Python and PHP codes for 
+Raspberry Pi, and Arduino sketch for Arduino board. The first stage of the circuit is a 12V charger for charging 
+rechargeable batteries. Four lead-acid rechargeable batteries, each of 4V, 1Ah, are arranged in series and 
+parallel combination to provide 8V power supply. If the batteries are connected in series, the final voltage 
+gets added up and current remains the same. If the batteries are connected in parallel, current adds up and 
+voltage remains the same. Thus, you get 8V, 2Ah power supply by connecting two each in series and then the 
+two sets in parallel. Diode D1 is used to block discharging of the battery through LED1 and capacitor C1. The 
+diode also makes the circuit stable and controls temperature while charging. The 8V power supply is used to power 
+the Arduino, motor driver IC and other modules. When switch S1 is open, the battery supply to servos is cut off. 
+Three series diodes (D2 through D4) reduce the voltage to around 6V for safe operation of servo motors. A 5V power 
+bank is used to power the Raspberry Pi.The navigation circuit controls movement of the robot. It consists of 
+Arduino Mega 2560 board (Board2), HC-05 Bluetooth module, L293D motor driver (IC1), and two DC geared motors 
+M3 and M4. Directional data or command from the smartphone is sent to the navigation circuit through HC-05 Blue-
+-tooth module. It is processed by the Arduino and then fed to the motor driver IC, which drives the geared motor 
+in the required direction. Commands are given to the Bluetooth Electronics app installed in the smartphone.First, 
+you need to open the Bluetooth Electronics app and pair with the HC-05 module. Once the two devices are paired, 
+the buttons are edited in the app and configured with English alphabet characters. Each direction (forward, 
+backward, right and left) is assigned a character. Four buttons are used as shown in Fig. 4. When these buttons 
+are pressed, the corresponding characters get transmitted. HC-05 Bluetooth module receives the characters and sends 
+these to the Arduino pins (transmitter and receiver). The Arduino processes this data and compares with the Arduino 
+program. The corresponding digital values are sent to input pins of L293D IC. The driver IC provides more current 
+in order to make the motor move in the required direction. Depending on the data received from the Bluetooth module, 
+the motor moves in forward or backward direction. There are four wires connected to the geared motors from Board2 
+having ATmega2560 microcontroller (MCU). Arduino Mega is used because it has 16 analogue channels and can be used 
+to connect different sensors. The flow-chart given along depicts the algorithm used in the navigation program 
+(arduino_bluetooth.ino) burnt into the MCU of Arduino. Capturing live video. Servo motors are connected to GPIO pins 
+of RPi. In order to control the position of the camera, two servo motors (M1 and M2) are used to move the camera in 
+X and Y directions. Download the Wireless IMU app from Play Store and install in your smartphone. The app supports 
+accelerometer, gyroscope and magnetometer, and can be made to run in the background. The values from this app are 
+sent to the RPi through UDP protocol. The magnetometer values make the servos move in either right or left direction. 
+The accelerometer values make the servos move up and down. Only Z direction is used in the project. Thus, the camera can capture live video at different angles.
