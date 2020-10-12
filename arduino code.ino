@@ -1,11 +1,11 @@
 char c='s';
 
-
 void setup()  
 {
   Serial.begin(9600);
   Serial2.begin(9600);
   Serial2.println("bLuEtOoTh InItIaTeD....");
+  
   pinMode(8,OUTPUT);
   pinMode(9,OUTPUT);
   pinMode(10,OUTPUT);
@@ -20,12 +20,12 @@ void setup()
 
 void loop()
 {
-   
-    if(Serial2.available())    ////Bluetooth control
+    if(Serial2.available())
     {
        c=Serial2.read();
     }
    delay(80);
+  
      if(c=='s')
    {
      digitalWrite(8,HIGH);
@@ -67,4 +67,3 @@ void loop()
      Serial2.println("Left");
    }
 }
-

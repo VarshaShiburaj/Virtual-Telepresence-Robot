@@ -1,10 +1,6 @@
-
-#final code for camera movement
-
 import socket, traceback
 import serial
 from time import sleep
-
 import RPi.GPIO as GPIO
 import time
 
@@ -17,8 +13,6 @@ p1=GPIO.PWM(13,50)
 p.start(8)
 p1.start(7.5)
 
-
-
 while 1:
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -30,14 +24,13 @@ while 1:
         time.sleep(0.2)               
         message, address = s.recvfrom(8192)
         no1,no2,x1,y1,z1,no3,x2,y2,z2=message.split(',')
-        print(message)         #whole message signal
+        print(message)        
         print(z1 ,z2)
         a1=float(z1)
         b1=float(z2)
         s.close();
         
-
-        if(a1>6):       #uppper limit
+        if(a1>6):      
             a=12.3
             
         elif(a1>5):
@@ -55,7 +48,7 @@ while 1:
             a=10.2
             
         elif(a1>0):
-            a=9      #middle limit
+            a=9      
             
         elif(a1>-1):
             a=8
@@ -65,9 +58,7 @@ while 1:
             
         elif(a1>-3):
             a=7.5
-
             
-        
         else:
             a=6.9
         time.sleep(0.2)  
@@ -131,22 +122,8 @@ while 1:
         time.sleep(0.4)
         p.ChangeDutyCycle(a)
         time.sleep(0.4)
-        
-        
-        
-    
-     
-
-       
-        
-              
+          
     except (KeyboardInterrupt, SystemExit):
         raise
     except:
         traceback.print_exc()
-
-
-
-
-
-
